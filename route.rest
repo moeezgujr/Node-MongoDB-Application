@@ -1,0 +1,28 @@
+GET http://localhost:3000/subscribers/12
+
+####
+
+POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "name":"simple",
+    "subscribedToChannel":"web simple"
+}
+
+####
+GET http://localhost:3000/subscribers/6299178aaa9ae08996fed460
+ 
+
+####
+DELETE http://localhost:3000/subscribers/6299178aaa9ae08996fed460
+
+
+#####
+PATCH  http://localhost:3000/subscribers/62991bf2805108ef717ff96d
+Content-Type: application/json
+
+{
+    "name":"dfd",
+    "subscribedToChannel":"simple"
+}
