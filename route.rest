@@ -26,3 +26,24 @@ Content-Type: application/json
     "name":"dfd",
     "subscribedToChannel":"simple"
 }
+
+####
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "name":"moeez",
+    "email":"mnnmnzx@gmail.com",
+    "password":"123456"
+}
+
+####
+
+POST http://localhost:3000/auth
+Content-Type: application/json
+
+{
+    "email":"ozxxzxx@gmail.com",
+    "password":"123456"
+}
