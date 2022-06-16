@@ -14,8 +14,14 @@ router.post("/", async (req, res) => {
   if (!req.body.password) {
     return res.status(400).send("password is missing");
   }
-  if (!req.body.name) {
-    return res.status(400).send("name is missing");
+  if (!req.body.firstName) {
+    return res.status(400).send("First name is missing");
+  }
+  if (!req.body.phone) {
+    return res.status(400).send("phone no is missing");
+  }
+  if (!req.body.lastName) {
+    return res.status(400).send("Last name is missing");
   }
   // Check if this user already exisits
   let user = await User.findOne({ email: req.body.email });
@@ -23,7 +29,9 @@ router.post("/", async (req, res) => {
     return res.status(400).send("That user already exists!");
   } else {
     // Insert the new user if they do not exist yet
-    user = new User(_.pick(req.body, ["name", "email", "password"]));
+    user = new User(
+      _.pick(req.body, ["firstName", "lastName", "email", "password"])
+    );
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
@@ -32,7 +40,7 @@ router.post("/", async (req, res) => {
     const token = jwt.sign({ _id: user._id }, "PrivateKey");
     res
       .header("x-auth-token", token)
-      .send(_.pick(user, ["_id", "name", "email"]));
+      .send(_.pick(user, ["_id", "firstName", "lastName", "email"]));
   }
 });
 
